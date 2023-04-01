@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const db = require('../config/db');
 const HttpError = require('../errors/httpError');
-const { authUser, createUser, getUserById } = require('../models/regularmodel/auth');
+const { authUser, createUser, getUserById } = require('../models/auth');
 
 const signin = async (req, res, next) => {
 
@@ -14,9 +14,9 @@ const signin = async (req, res, next) => {
 
 const register = async (req, res, next) => {
 
-    const { username, password, email } = req.body;
+    const { username, password, email, avatar } = req.body;
     
-    const { token, user } = await createUser(username, password, email)
+    const { token, user } = await createUser(username, password, email, avatar)
 
     res.status(200).send({ token, user })
 }
