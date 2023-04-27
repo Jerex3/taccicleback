@@ -20,7 +20,7 @@ class User {
 
     static findByUsernamePassword = async (username, password) => {
         
-        const [rows] = await connection.query('select * from user where name = ? and password = ?', [username, password])
+        const [rows] = await connection.query('select * from user where username = ? and password = ?', [username, password])
         
         if (!rows.length) throw new HttpError("Usuario no valido", 401);
 

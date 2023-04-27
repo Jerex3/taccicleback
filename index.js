@@ -5,6 +5,8 @@ const fileUpload = require('express-fileupload');
 
 const auth = require('./src/routes/auth');
 const user = require('./src/routes/user');
+const ride = require('./src/routes/ride');
+
 const app = express();
 
 
@@ -18,12 +20,12 @@ app.use( fileUpload({
 }));
 app.use('/api', auth);
 app.use('/api', user);
+app.use('/api', ride);
 
 app.use((err, req, res, next) => {
 
     const code = err.code ?? 500;
-     console.log(err);
-     console.log("wenas?")
+    console.log(err);
     res.status(code).send({message:`${err.message}`});
 });
 

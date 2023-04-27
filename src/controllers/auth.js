@@ -24,14 +24,14 @@ const register = async (req, res, next) => {
 const verify = async (req, res, next) => {
 
     try {
-
+ 
         const tokenRequest = req.header('x-token');
 
         const value = jwt.decode(tokenRequest);
 
         if (!Number.isInteger(value.idUser)) throw new HttpError("invalid token", 401);
-
         const { token, user } = await getUserById(value.idUser);
+        console.log(user);
 
         res.status(200).send({ token, user })
 
